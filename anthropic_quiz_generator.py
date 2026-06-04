@@ -10,7 +10,9 @@ import json
 import random
 import argparse
 from pathlib import Path
+from dotenv import load_dotenv
 
+load_dotenv()
 try:
     import anthropic
 except ImportError:
@@ -80,7 +82,7 @@ def generate_quiz(text: str, num_questions: int, difficulty: str) -> list[dict]:
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
         print(f"{C.RED}❌ ANTHROPIC_API_KEY environment variable not set.{C.RESET}")
-        print("   Export it with: export ANTHROPIC_API_KEY=your_key_here")
+        print("   Export it with: export ANTHROPIC_API_KEY")
         sys.exit(1)
 
     client = anthropic.Anthropic(api_key=api_key)
